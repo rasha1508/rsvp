@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RSVP Confirmation</title>
+    <style>
+      body {
+        font-family: "Playfair Display", serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f9f5f1;
+        color: #a67b5b;
+      }
+
+      .container {
+        text-align: center;
+        background-color: #fffaf2;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        font-size: 2em;
+        margin-bottom: 20px;
+      }
+
+      input[type="date"],
+      input[type="tel"] {
+        padding: 10px;
+        font-size: 1em;
+        border: 1px solid #a67b5b;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        background-color: #fbf8f4;
+        color: #a67b5b;
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .submit-btn {
+        font-size: 1em;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #a67b5b;
+        color: white;
+        cursor: pointer;
+      }
+
+      .submit-btn:hover {
+        background-color: #8c6954;
+      }
+
+      .rsvp-info {
+        margin-top: 20px;
+        font-size: 1.2em;
+      }
+
+      .rsvp-button {
+        font-size: 1.2em;
+        padding: 10px 20px;
+        background-color: #a67b5b;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 10px;
+      }
+
+      .rsvp-button:hover {
+        background-color: #8c6954;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Set Your RSVP Date</h1>
+      <div id="input-fields">
+        <input type="date" id="rsvp-date" placeholder="Select RSVP Date" />
+        <input
+          type="tel"
+          id="whatsapp-number"
+          placeholder="Enter WhatsApp Number"
+        />
+        <button class="submit-btn" onclick="showRSVPInfo()">
+          Confirm RSVP Date
+        </button>
+      </div>
+
+      <div id="rsvp-info" class="rsvp-info" style="display: none">
+        <p id="rsvp-date-text"></p>
+        <a id="rsvp-button" class="rsvp-button" href="#" target="_blank"
+          >RSVP Now</a
+        >
+      </div>
+    </div>
+
+    <script>
+      function showRSVPInfo() {
+        const rsvpDateInput = document.getElementById("rsvp-date").value;
+        const whatsappNumberInput =
+          document.getElementById("whatsapp-number").value;
+        const rsvpDateText = document.getElementById("rsvp-date-text");
+        const rsvpInfo = document.getElementById("rsvp-info");
+        const rsvpButton = document.getElementById("rsvp-button");
+        const inputFields = document.getElementById("input-fields");
+
+        if (!rsvpDateInput || !whatsappNumberInput) {
+          alert("Please enter both the RSVP date and WhatsApp number.");
+          return;
+        }
+
+        // Format WhatsApp number (remove any non-numeric characters)
+        const formattedNumber = whatsappNumberInput.replace(/\D/g, "");
+
+        // Hide the input fields
+        inputFields.style.display = "none";
+
+        // Display the selected date
+        rsvpDateText.innerText = `RSVP Date is: ${rsvpDateInput}`;
+        rsvpInfo.style.display = "block";
+
+        // Set up the WhatsApp link with the selected date and number
+        rsvpButton.href = `https://wa.me/${formattedNumber}?text=Hi,%20I'm%20RSVPing%20for%20the%20wedding%20on%20${rsvpDateInput}.`;
+      }
+    </script>
+  </body>
+</html>
