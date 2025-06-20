@@ -1,134 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RSVP Widget</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
-  <style>
-    /* Center the widget */
-    body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      background-color: transparent;
-      font-family: 'Playfair Display', serif;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RSVP Widget</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Dancing+Script:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background-color: transparent;
+        font-family: "Playfair Display", serif;
+      }
 
-    /* Widget container */
-    .widget-container {
-      background-color: #fffaf2;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-      text-align: center;
-      max-width: 500px;
-      width: 100%;
-      color: #a67b5b;
-    }
+      .widget-container {
+        background-color: #fffaf2;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        text-align: center;
+        max-width: 500px;
+        width: 100%;
+        color: #a67b5b;
+      }
 
-    /* Title styling */
-    .widget-title {
-      margin-bottom: 15px;
-      font-family: "Dancing Script", cursive;
+      .widget-title {
+        margin-bottom: 15px;
+        font-family: "Dancing Script", cursive;
         font-size: 2em;
         font-weight: 500;
         color: #8c6954;
-    }
+      }
 
-    /* Input fields styling */
-    input[type="date"], input[type="tel"] {
-      padding: 10px;
-      font-size: 1em;
-      border: 1px solid #d0a68a;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      width: 90%;
-      background-color: #fbf8f4;
-      color: #8c6954;
-      font-family: 'Playfair Display', serif;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
+      input[type="date"] {
+        padding: 10px;
+        font-size: 1em;
+        border: 1px solid #d0a68a;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        width: 90%;
+        background-color: #fbf8f4;
+        color: #8c6954;
+        font-family: "Playfair Display", serif;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
 
-    /* Button styling */
-    .submit-btn, .rsvp-button {
-      font-size: 1em;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      background-color: #a67b5b;
-      color: white;
-      cursor: pointer;
-      width: 80%;
-      margin-top: 10px;
-      font-family: 'Playfair Display', serif;
-      text-decoration: none;
-      display: inline-block;
-    }
+      .phone-input-wrapper {
+        display: flex;
+        align-items: center;
+        border: 1px solid #d0a68a;
+        border-radius: 8px;
+        width: 90%;
+        margin: 0 auto 15px;
+        background-color: #fbf8f4;
+        padding: 0 10px;
+      }
 
-    /* Button hover effect */
-    .submit-btn:hover, .rsvp-button:hover {
-      background-color: #8c6954;
-    }
+      .phone-input-wrapper input {
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 1em;
+        padding: 12px 8px;
+        font-family: "Playfair Display", serif;
+        color: #8c6954;
+      }
 
-    /* RSVP information */
-    .rsvp-info {
-      font-size: 1.1em;
-      color: #8c6954;
-      margin-top: 20px;
-      font-family: 'Playfair Display', serif;
-    }
-  </style>
-</head>
-<body>
+      #country-code {
+        width: 60px;
+        text-align: center;
+      }
 
-<div class="widget-container">
-  <div id="input-fields">
-    <div class="widget-title">Set Your RSVP Date</div>
-    <input type="date" id="rsvp-date" placeholder="Select RSVP Date" />
-    <input type="tel" id="whatsapp-number" placeholder="Enter WhatsApp Number" />
-    <button class="submit-btn" onclick="showRSVPInfo()">Confirm RSVP Date</button>
-  </div>
+      .divider {
+        color: #d0a68a;
+        font-size: 1.2em;
+        margin: 0 8px;
+      }
 
-  <div id="rsvp-info" class="rsvp-info" style="display: none;">
-    <p id="rsvp-date-text"></p>
-    <a id="rsvp-button" class="rsvp-button" href="#" target="_blank">RSVP Now</a>
-  </div>
-</div>
+      #whatsapp-number {
+        flex: 1;
+      }
 
-<script>
-  function showRSVPInfo() {
-    const rsvpDateInput = document.getElementById("rsvp-date").value;
-    const whatsappNumberInput = document.getElementById("whatsapp-number").value;
-    const rsvpDateText = document.getElementById("rsvp-date-text");
-    const rsvpInfo = document.getElementById("rsvp-info");
-    const rsvpButton = document.getElementById("rsvp-button");
-    const inputFields = document.getElementById("input-fields");
+      .submit-btn,
+      .rsvp-button {
+        font-size: 1em;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        background-color: #a67b5b;
+        color: white;
+        cursor: pointer;
+        width: 80%;
+        margin-top: 10px;
+        font-family: "Playfair Display", serif;
+        text-decoration: none;
+        display: inline-block;
+      }
 
-    if (!rsvpDateInput || !whatsappNumberInput) {
-      alert("Please enter both the RSVP date and WhatsApp number.");
-      return;
-    }
+      .submit-btn:hover,
+      .rsvp-button:hover {
+        background-color: #8c6954;
+      }
 
-    // Format WhatsApp number (remove any non-numeric characters)
-    const formattedNumber = whatsappNumberInput.replace(/\D/g, '');
+      .rsvp-info {
+        font-size: 1.1em;
+        color: #8c6954;
+        margin-top: 20px;
+        font-family: "Playfair Display", serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="widget-container">
+      <div id="input-fields">
+        <div class="widget-title">Set Your RSVP Date</div>
+        <input type="date" id="rsvp-date" placeholder="Select RSVP Date" />
 
-    // Hide the input fields
-    inputFields.style.display = "none";
+        <div class="phone-input-wrapper">
+          <input
+            type="text"
+            id="country-code"
+            placeholder="+212"
+            maxlength="5"
+            oninput="validateCountryCode(this)"
+          />
+          <span class="divider">|</span>
+          <input type="tel" id="whatsapp-number" placeholder="612345678" />
+        </div>
 
-    // Display the selected date
-    rsvpDateText.innerText = `RSVP Date: ${rsvpDateInput}`;
-    rsvpInfo.style.display = "block";
+        <button class="submit-btn" onclick="showRSVPInfo()">
+          Confirm RSVP Date
+        </button>
+      </div>
 
-    // Set up the WhatsApp link with the selected date and number
-    rsvpButton.href = `https://wa.me/${formattedNumber}?text=Hi,%20I'm%20RSVPing%20for%20the%20wedding%20on%20${rsvpDateInput}.`;
-  }
-</script>
+      <div id="rsvp-info" class="rsvp-info" style="display: none">
+        <p id="rsvp-date-text"></p>
+        <a id="rsvp-button" class="rsvp-button" href="#" target="_blank"
+          >RSVP Now</a
+        >
+      </div>
+    </div>
 
-</body>
+    <script>
+      function validateCountryCode(input) {
+        let cleaned = input.value.replace(/[^\d+]/g, "");
+        if (cleaned.indexOf("+") > 0) {
+          cleaned = cleaned.replace(/\+/g, "");
+          cleaned = "+" + cleaned;
+        }
+        input.value = cleaned;
+      }
+
+      function showRSVPInfo() {
+        const rsvpDateInput = document.getElementById("rsvp-date").value;
+        const countryCodeInput = document
+          .getElementById("country-code")
+          .value.trim();
+        const whatsappNumberInput = document
+          .getElementById("whatsapp-number")
+          .value.trim();
+        const rsvpDateText = document.getElementById("rsvp-date-text");
+        const rsvpInfo = document.getElementById("rsvp-info");
+        const rsvpButton = document.getElementById("rsvp-button");
+        const inputFields = document.getElementById("input-fields");
+
+        if (!rsvpDateInput || !whatsappNumberInput || !countryCodeInput) {
+          alert(
+            "Please enter the RSVP date, country code, and WhatsApp number."
+          );
+          return;
+        }
+
+        const countryCode = countryCodeInput.startsWith("+")
+          ? countryCodeInput
+          : "+" + countryCodeInput;
+        const formattedNumber = whatsappNumberInput.replace(/\D/g, "");
+        const waNumber = (countryCode + formattedNumber).replace(/\+/g, "");
+
+        inputFields.style.display = "none";
+        rsvpDateText.innerText = `RSVP Date: ${rsvpDateInput}`;
+        rsvpInfo.style.display = "block";
+        rsvpButton.href = `https://wa.me/${waNumber}?text=Hi,%20I'm%20RSVPing%20for%20the%20wedding%20on%20${rsvpDateInput}.`;
+      }
+    </script>
+  </body>
 </html>
